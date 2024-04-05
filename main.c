@@ -18,7 +18,6 @@ int main (int argc, char *argv[])
 	int counter = 1;
 	int num = 0;
 	char *command;
-	char *cmd;
 	const char *delim =" \n";
 	stack_t *head;
 
@@ -56,20 +55,19 @@ int main (int argc, char *argv[])
 	{
 		if (strcmp(command, "push") == 0)
 		{
-			cmd = "push";
+			command = strtok(NULL, delim);
 			printf("push\n");
+			
+			if (command)
+			{
+				num = atoi(command);
+				push(global_stack, num);
+			}
 		}
-
 		else if (strcmp(command, "pall") == 0)
 		{
-			cmd = "pall";
 			printf("pall\n");
-		}
-		else
-		{
-			num = atoi(command);
-			printf("%d\n", num);
-			cmd(head, num);
+			pall(global_stack, num);
 		}
 		command = strtok(NULL, delim);
 
@@ -79,5 +77,13 @@ int main (int argc, char *argv[])
 
 	free(line);
 	fclose(file);
-	return (EXIT_SUCCESS);
+
+	stack_t *temp;
+	while (*global_stack != NULL)
+	{
+		temp = *global_stack;
+		*global_stack = (*global_stack)->next;
+		free(temp);
+	}		
+		return (EXIT_SUCCESS);
 }
