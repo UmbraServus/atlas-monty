@@ -15,7 +15,7 @@ int main (int argc, char *argv[])
 	FILE *file;
 	char *line = NULL;
 	size_t line_len;
-	int counter = 1;
+/*	int counter = 1;*/
 	int num = 0;
 	char *command;
 	const char *delim =" \n";
@@ -44,8 +44,8 @@ int main (int argc, char *argv[])
 
 	while (getline(&line, &line_len, file) != -1)
 	{
-		printf("line %d: %s", counter, line);
-		counter++;
+	/*	printf("line %d: %s", counter, line);
+		counter++; */
 
 	/* Tokenize each line */
 
@@ -56,7 +56,7 @@ int main (int argc, char *argv[])
 		if (strcmp(command, "push") == 0)
 		{
 			command = strtok(NULL, delim);
-			printf("push\n");
+			/*printf("push\n");*/
 			
 			if (command)
 			{
@@ -66,7 +66,7 @@ int main (int argc, char *argv[])
 		}
 		else if (strcmp(command, "pall") == 0)
 		{
-			printf("pall\n");
+		/*	printf("pall\n");*/
 			pall(global_stack, num);
 		}
 		command = strtok(NULL, delim);
