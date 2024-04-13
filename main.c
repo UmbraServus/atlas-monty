@@ -15,7 +15,7 @@ int main (int argc, char *argv[])
 	FILE *file;
 	char *line = NULL;
 	size_t line_len;
-/*	int counter = 1;*/
+	int counter = 0;
 	int num = 0;
 	char *command;
 	const char *delim =" \n";
@@ -44,23 +44,25 @@ int main (int argc, char *argv[])
 
 	while (getline(&line, &line_len, file) != -1)
 	{
-	/*	printf("line %d: %s", counter, line);
-		counter++; */
+	/*	printf("line %d: %s", counter, line); */
 
 	/* Tokenize each line */
+	command[counter] = strtok(line, delim);
+	counter++;
 
-	command = strtok(line, delim);
-
-	while (command)
-	{
-		if (strcmp(command, "push") == 0)
+		if (command)
 		{
-			command = strtok(NULL, delim);
-			/*printf("push\n");*/
+
+		get_ops_func(&head, command[0], num);
+
+		printf("%s\n", command[0]);
+		counter++
+		command = strtok(NULL, delim);
 			
 			if (command)
 			{
 				num = atoi(command);
+				printf("%s\n", command);
 				push(global_stack, num);
 			}
 		}
