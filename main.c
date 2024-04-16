@@ -15,9 +15,9 @@ int main (int argc, char *argv[])
 	FILE *file;
 	char *line = NULL;
 	size_t line_len;
-	int counter = 0;
-	int num = 0;
-	char *command;
+	unsigned int counter = 0, unsigned int num = 0;
+	void (*f)(stack_t **stack, unsigned int line number) = func; 
+	char *command[];
 	const char *delim =" \n";
 	stack_t *head;
 
@@ -47,31 +47,26 @@ int main (int argc, char *argv[])
 	/*	printf("line %d: %s", counter, line); */
 
 	/* Tokenize each line */
-	command[counter] = strtok(line, delim);
+	command[0] = strtok(line, delim);
 	counter++;
 
 		if (command)
 		{
+			/* get function to use */
 
-		get_ops_func(&head, command[0], num);
 
+		command[1] = strtok(NULL, delim);
+		counter++	
+		num = atoi(command[1]);
+
+		func = get_ops_func(command[0]);
+		func(&head, num);
 		printf("%s\n", command[0]);
+		printf("%s\n", command[1]);
+
+		}
+		command[2] = strtok(NULL, delim);
 		counter++
-		command = strtok(NULL, delim);
-			
-			if (command)
-			{
-				num = atoi(command);
-				printf("%s\n", command);
-				push(global_stack, num);
-			}
-		}
-		else if (strcmp(command, "pall") == 0)
-		{
-		/*	printf("pall\n");*/
-			pall(global_stack, num);
-		}
-		command = strtok(NULL, delim);
 
 	}
 
