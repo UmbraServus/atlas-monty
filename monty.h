@@ -40,6 +40,11 @@ extern stack_t **global_stack;
 
 /* Prototype Functions */
 
+void open_read_file(char *file, stack_t **stack);
+void monty_ops(char *command, stack_t **stack, unsigned int num);
+
+
+
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 

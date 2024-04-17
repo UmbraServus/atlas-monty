@@ -1,35 +1,36 @@
-#include "monty.c"
+#include "monty.h"
 
 
-void read_open_file(char *file, **stack)
+void open_read_file(char *file, stack_t **stack)
 {
-	FILE *f
-	char *line = NULL
-	site_t line_len;
+	FILE *f;
+	char *line = NULL;
+	size_t line_len;
 	unsigned int num = 0;
 	char *command;
 	const char *delim =" \n";
 
 	f = fopen(file, "r");
 
-        if (f == NULL)
-        {
+	if (f == NULL)
+	{
                 perror(" ");
                 exit(EXIT_FAILURE);
-        }
+	}
 
         /* Reads file line by line */
 
-        while (getline(&line, &line_len, file) != -1)
+        while (getline(&line, &line_len, f) != -1)
         {
             /* Tokenize each line */
-        command = strtok(line, delim);
-        num++
+
+		command = strtok(line, delim);
+		num++;
                 if (command)
 		{
 		       	/* get function and use function */
 
-                get_ops_func(command, &head, num);
+                monty_ops(command, stack, num);
 		
 		}
 	}
