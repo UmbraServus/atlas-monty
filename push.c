@@ -13,12 +13,15 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_stack;
+	char *num;
 
-/*	if (_isdigit(line_number == 1))
+	num = strtok(NULL, "\n \t\r");
+	if (num == NULL)
 	{
-		perror(" ");
+		perror("L<%u>: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
-	} */
+
+	}
 		new_stack = malloc(sizeof(stack_t));
 		
 		if (new_stack == NULL)
@@ -27,21 +30,12 @@ void push(stack_t **stack, unsigned int line_number)
 			exit(EXIT_FAILURE);
 		}
 
-		if (*stack == NULL)
-		{
-
 		new_stack->n = line_number;
-		new_stack->next = NULL;
+		new_stack->next = *stack;
 		new_stack->prev = NULL;
-		*stack = new_stack;
 		
-		}
-
-		else
+		if (stack != NULL)
 		{
-			new_stack->prev = NULL;
-			new_stack->next = *stack;
-			new_stack->n = line_number;
 			(*stack)->prev = new_stack;
 			*stack = new_stack;
 		}
