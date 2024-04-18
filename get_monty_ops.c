@@ -29,6 +29,11 @@ while (ops[i].opcode)
 	}
 
 	i++;
+
+	else
+	{
+		perror("L<%u>: unknown instruction %s\n", line_num, command);
+		exit(EXIT_FAILURE);
 }
 
 }
