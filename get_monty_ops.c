@@ -31,8 +31,11 @@ while (ops[i].opcode)
 	i++;
 }
 
-		fprintf(stderr, "L<%u>: unknown instruction %s\n", line_num, command);
+	if (strlen(command) != 0)
+	{
+		fprintf(stderr, "L%u: unknown instruction %s\n", line_num, command);
 		free(line);
 		fclose(file);
 		exit(EXIT_FAILURE);
+	}
 }
