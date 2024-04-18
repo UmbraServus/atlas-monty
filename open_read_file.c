@@ -8,7 +8,6 @@ void open_read_file(char *file, stack_t **stack)
 	size_t line_len;
 	unsigned int num = 0;
 	char *command;
-	ssize_t read_line;
 	const char *delim =" \n";
 
 	f = fopen(file, "r");
