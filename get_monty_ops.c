@@ -33,7 +33,7 @@ while (ops[i].opcode)
 
 	if (strlen(command) != 0)
 	{
-		fprintf(stderr, "L%u: unknown instruction %s\n", line_num, command);
+		printf("L%u: unknown instruction %s\n", line_num, command);
 		free(line);
 		fclose(file);
 		exit(EXIT_FAILURE);
