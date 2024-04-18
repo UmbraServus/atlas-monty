@@ -27,16 +27,9 @@ int main (int argc, char *argv[])
 
 	open_read_file(argv[1], &head);
 
-/* free everything */
+/* free everything at exit */
 
-	stack_t *temp;
-
-	while (*global_stack != NULL)
-	{
-		temp = *global_stack;
-		*global_stack = (*global_stack)->next;
-		free(temp);
-	}		
+	atexit(free_everything);
 	
-	return (EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
 }
