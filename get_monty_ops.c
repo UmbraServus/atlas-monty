@@ -33,6 +33,6 @@ while (ops[i].opcode)
 
 		fprintf(stderr, "L<%u>: unknown instruction %s\n", line_num, command);
 		free(line);
-		free(file);
+		fclose(file);
 		exit(EXIT_FAILURE);
 }
