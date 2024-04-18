@@ -8,14 +8,15 @@ void open_read_file(char *file, stack_t **stack)
 	size_t line_len;
 	unsigned int num = 0;
 	char *command;
+	ssize_t read_line;
 	const char *delim =" \n";
 
 	f = fopen(file, "r");
 
 	if (f == NULL)
 	{
-                perror(" ");
-                exit(EXIT_FAILURE);
+		fprintf(stderr," ");
+		exit(EXIT_FAILURE);
 	}
 
         /* Reads file line by line */
@@ -30,7 +31,7 @@ void open_read_file(char *file, stack_t **stack)
 		{
 		       	/* get function and use function */
 
-                monty_ops(command, stack, num);
+                monty_ops(command, stack, num, line, f);
 		
 		}
 	}
@@ -39,6 +40,7 @@ void open_read_file(char *file, stack_t **stack)
 	{
 		free(line);
 		fclose(f);
+
 	}
 
 }

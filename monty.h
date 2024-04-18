@@ -41,7 +41,7 @@ extern stack_t **global_stack;
 /* Prototype Functions */
 
 void open_read_file(char *file, stack_t **stack);
-void monty_ops(char *command, stack_t **stack, unsigned int num);
+void monty_ops(char *command, stack_t **stack, unsigned int num, char *line, FILE *file);
 void free_everything (void);
 
 

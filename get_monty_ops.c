@@ -9,7 +9,7 @@
  *
  */
 
-void monty_ops(char *command, stack_t **stack, unsigned int line_num)
+void monty_ops(char *command, stack_t **stack, unsigned int line_num, char *line, FILE *file)
 {
 	
 	instruction_t ops[] = {
@@ -32,5 +32,7 @@ while (ops[i].opcode)
 }
 
 		fprintf(stderr, "L<%u>: unknown instruction %s\n", line_num, command);
+		free(line);
+		free(file);
 		exit(EXIT_FAILURE);
 }
